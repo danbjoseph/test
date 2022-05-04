@@ -2,7 +2,29 @@
 <html>
 <body>
 
-  <h1><a href="viber://pa?chatURI=pck_test_bot2&text=ABCE">link</a></h1>
+  <h1 id="link_container"></h1>
 
 </body>
+<script>
+
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+
+const text = urlParams.get('text');
+console.log(text);
+if (text) {
+  let anchor = document.createElement('a');
+  let textNode = document.createTextNode("click this link to launch Viber");
+  anchor.appendChild(textNode);
+  anchor.href = "viber://pa?chatURI=pck_test_bot2&text=" + text;
+  document.getElementById("link_container").appendChild(anchor);
+} else {
+  let anchor = document.createElement('span');
+  let textNode = document.createTextNode("sorry something went wrong");
+  anchor.appendChild(textNode);
+  document.getElementById("link_container").appendChild(anchor);
+}
+
+</script>
 </html>
